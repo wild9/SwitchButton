@@ -1,0 +1,45 @@
+
+Add state rotate feature
+better idea - add to switchButton Class instead - when declaring switch declare button pin and number of states 
+then just read current state and incriment or loop to the beginning
+
+
+edit: may be better as a function
+void UpdateStates (void);{
+
+if (Switch1.pressed()){
+if (Switch1CurrentState < 3)
+{
+currentState++
+}
+else
+{
+currentState = 1
+}
+
+}
+
+
+
+Create "StateRotate" Class
+
+Every time it is passed boolean True it increments a state variable by one untill max then loops round
+
+
+Class StateRotate
+Public:
+int currentState = 1;
+Void stateRotate(int numberOfStates){
+
+}
+
+update(bool rotateOnOne)
+
+if (CurrentState < numberOfStates)
+{
+currentState++
+}
+else
+{
+currentState = 1
+}
