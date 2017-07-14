@@ -16,8 +16,10 @@ class switchButton
 switchButton(int whichPin){
   pin = whichPin;
   };
-   
-   // Reads digital pin and decides on state
+    
+
+
+    // Reads digital pin and decides on state
 void update(){
     int reading = digitalRead(pin);
 	// if the button has been pressed ignore more presses for a few milliseconds to debounce
@@ -37,11 +39,44 @@ void update(){
   
   
     // Returns True if the button has been pressed and this is the first time it has been read
-      bool pressed(){
-        bool returnvalue = pressedNotActed;
-        pressedNotActed = false;
-        return returnvalue;
-      };      
+  bool pressed(){
+    
+    bool returnvalue = pressedNotActed;
+    pressedNotActed = false;
+    return returnvalue;
+    
+  };
+
+
+       
 };
 
 
+////////////////////////////////////////////////////////////////
+
+// Pin 13 has an LED connected on most Arduino boards.
+// give it a name:
+int ledPin = 13;
+switchButton button1(3);
+// the setup routine runs once when you press reset:
+void setup() {
+  Serial.begin(9600);
+  // initialize the digital pin as an output.
+  pinMode(3,INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  
+  button1.update();
+  if (button1.state == HIGH) {
+        digitalWrite(ledPin, HIGH);
+      Serial.println("High");
+      }
+  else{
+    	digitalWrite(ledPin, LOW);
+      Serial.println("Low");
+}
+    Serial.println(button1.pressedNotActed);
+}
